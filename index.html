@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FlexiRide UI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        system-ui, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f2f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 32px 12px;
+    }
+
+    .app {
+      width: 390px;               /* phone width */
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      padding: 20px 20px 16px;
+    }
+
+    /* LOGO */
+    .logo-section {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .logo-section img {
+      width: 170px;
+      height: auto;
+      display: block;
+      margin: 0 auto 4px;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #0c7fdc, #ff7a21);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* USER / ICONS ROW */
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+
+    .user-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #111827;
+      position: relative;
+    }
+
+    .avatar::after {
+      content: "";
+      position: absolute;
+      width: 60%;
+      height: 55%;
+      border-radius: 50%;
+      background: #ffffff;
+      top: 8%;
+      left: 20%;
+    }
+
+    .avatar::before {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 55%;
+      border-radius: 50% 50% 40% 40%;
+      background: #ffffff;
+      bottom: 0;
+      left: 10%;
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #111827;
+    }
+
+    .bell,
+    .menu {
+      width: 22px;
+      height: 22px;
+      position: relative;
+    }
+
+    .bell::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 14%;
+      width: 12px;
+      height: 10px;
+      margin-left: -6px;
+      border-radius: 6px 6px 2px 2px;
+      border: 2px solid #111827;
+      border-bottom: none;
+    }
+
+    .bell::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 3px;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      border-radius: 50%;
+      background: #111827;
+    }
+
+    .menu::before,
+    .menu::after,
+    .menu span {
+      content: "";
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      height: 3px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .menu::before {
+      top: 3px;
+    }
+
+    .menu::after {
+      bottom: 3px;
+    }
+
+    .menu span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* WALLET / POINT / COUPON BAR */
+    .wallet-bar {
+      display: flex;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(90deg, #00a6b3, #009fce);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .wallet-item {
+      flex: 1;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .wallet-item:last-child {
+      border-right: none;
+    }
+
+    .wallet-icon {
+      font-size: 16px;
+    }
+
+    /* PROMO BAR */
+    .promo {
+      background: #e0f2ff;
+      color: #111827;
+      border-radius: 14px;
+      text-align: center;
+      padding: 10px 6px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* FEATURE CARDS */
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .row.second {
+      justify-content: space-between;
+    }
+
+    .card {
+      border-radius: 16px;
+      color: #ffffff;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .card .icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .station-map {
+      flex: 1;
+      background: #264fbc;
+    }
+
+    .tracking-bike {
+      flex: 1;
+      background: #108ca8;
+    }
+
+    .report {
+      width: 32%;
+      background: #e14b49;
+    }
+
+    .customer {
+      width: 32%;
+      background: #7644d8;
+    }
+
+    .change-bike {
+      width: 32%;
+      background: #f28b24;
+    }
+
+    /* FOOTER NAV */
+    .footer {
+      margin-top: 8px;
+      background: #202b33;
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 10px 12px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .footer-item:nth-child(2) {
+      flex: 1.2;
+    }
+
+    .footer-icon {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- LOGO (swap to your PNG if you want) -->
+    <div class="logo-section">
+      <img src="logo.jpg" alt="FlexiRide Logo" /> 
+    </div>
+
+    <!-- USER + ICONS -->
+    <div class="top-row">
+      <div class="user-left">
+        <div class="avatar"></div>
+        <span>Username</span>
+      </div>
+      <div class="top-right">
+        <div class="bell"></div>
+        <div class="menu"><span></span></div>
+      </div>
+    </div>
+
+    <!-- WALLET / POINT / COUPON -->
+    <div class="wallet-bar">
+      <div class="wallet-item">
+        <span class="wallet-icon">💳</span>
+        <span>Wallet</span>
+      </div>
+      <div class="wallet-item"><span>Point</span></div>
+      <div class="wallet-item"><span>Coupon</span></div>
+    </div>
+
+    <!-- PROMOTION -->
+    <div class="promo">First Time Free Promotion</div>
+
+    <!-- FEATURE ROW 1 -->
+    <div class="row">
+      <div class="card station-map">
+        <div class="icon">📍</div>
+        <div>Station<br />Map</div>
+      </div>
+      <div class="card tracking-bike">
+        <div class="icon">🚲</div>
+        <div>Tracking<br />Bike</div>
+      </div>
+    </div>
+
+    <!-- FEATURE ROW 2 -->
+    <div class="row second">
+      <div class="card report">
+        <div class="icon">📢</div>
+        <div>Report</div>
+      </div>
+      <div class="card customer">
+        <div class="icon">🎧</div>
+        <div>Customer<br />Service</div>
+      </div>
+      <div class="card change-bike">
+        <div class="icon">🔁</div>
+        <div>Change<br />Bike</div>
+      </div>
+    </div>
+
+    <!-- FOOTER NAV -->
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon">🏠</div>
+        <div>Home</div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon">🔳</div>
+        <div>Scan QR</div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon">⚙️</div>
+        <div>Settings</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
